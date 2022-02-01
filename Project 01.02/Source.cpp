@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <string>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 class car {
@@ -48,11 +49,16 @@ public:
         cout << s;
     }
 
-    string get_num() {
+    string& get_num()  {
         return number;
     }
 
+    int get_year() {
+        return year;
+    }
 };
+
+
 
 
 class car_dealership {
@@ -88,6 +94,22 @@ public:
 
     }
 
+    void sort_num() {
+        sort(cars.begin(), cars.end() , [](car & e, car & e1)
+        {
+            return e.get_num() > e1.get_num();
+
+        });
+    }
+
+    void sort_year() {
+        sort(cars.begin(), cars.end(), [](car& e, car& e1)
+            {
+                return e.get_year() > e1.get_year();
+
+            });
+    }
+
 
 };
 int main() {
@@ -97,7 +119,7 @@ int main() {
 
     c_d.set();
     c_d.print();
-    c_d.del_car();
+    c_d.sort_num();
     c_d.print();
 
     return 0;
